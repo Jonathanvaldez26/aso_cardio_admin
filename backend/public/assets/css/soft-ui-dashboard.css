@@ -10387,6 +10387,11 @@ fieldset:disabled .btn {
   color: #ffffff;
 }
 
+.btn-red-cardio {
+  background-color: #e6463c;
+  color: #ffffff;
+}
+
 .btn-dark-blue-cardio {
   background-color: #234664;
   color: #ffffff;
@@ -21359,7 +21364,7 @@ label,
 }
 
 .bg-gradient-secondary {
-  background-image: linear-gradient(310deg, #627594 0%, #A8B8D8 100%);
+  background-image: linear-gradient(310deg, #627594 100%, #627594 100%);
 }
 
 .bg-gradient-success {
@@ -21367,7 +21372,7 @@ label,
 }
 
 .bg-gradient-info {
-  background-image: linear-gradient(310deg, #2152ff 0%, #21d4fd 100%);
+  background-image: linear-gradient(310deg, #2190ff 100%, #2190ff 100%);
 }
 
 .bg-gradient-warning {
@@ -21375,7 +21380,7 @@ label,
 }
 
 .bg-gradient-danger {
-  background-image: linear-gradient(310deg, #ea0606 0%, #ff667c 100%);
+  background-image: linear-gradient(310deg, #e00b0b 100%, #e00b0b 100%);
 }
 
 .bg-gradient-light {
