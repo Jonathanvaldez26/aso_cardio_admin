@@ -891,7 +891,7 @@ html;
             if (empty($value['img']) || $value['img'] == null) {
                 $img_user = "/img/user.png";
             } else {
-                $img_user = "https://registro.foromusa.com/img/users_musa/{$value['img']}";
+                $img_user = "https://forolatamcardiometabolico.com/img/users_musa/{$value['img']}";
             }
 
             $estatus = '';
@@ -1510,8 +1510,13 @@ html;
     public function abrirpdf($clave, $noPages = null, $no_habitacion = null)
     {
         $datos_user = AsistentesDao::getRegistroAccesoByClaveRA($clave)[0];
-        $nombre_completo = strtoupper($datos_user['nombre'] . " " . $datos_user['apellido_paterno'] . " " . $datos_user['apellido_materno']) ;
-       
+        // $nombre_completo = strtoupper($datos_user['nombre'] . " " . $datos_user['apellido_paterno'] . " " . $datos_user['apellido_materno']) ;
+        //ABRIRPDF ETIQUETAS
+        $nombre = html_entity_decode($datos_user['nombre']);
+        $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
+        $apellido = html_entity_decode($datos_user['apellido_paterno']);
+        $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido);
+        $nombre_completo = mb_strtoupper($nombre_completo);
         //$nombre_completo = utf8_decode($_POST['nombre']);
         //$datos_user['numero_habitacion']
         
@@ -1531,7 +1536,7 @@ html;
             $pdf->SetFont('Arial', '', 5);    //Letra Arial, negrita (Bold), tam. 20
 
             $pdf->SetXY(12, 10);
-            $pdf->SetFont('Arial', 'B', 25);
+            $pdf->SetFont('Arial', 'B', 21);
             #4D9A9B
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(130, 5.5, utf8_decode($nombre_completo) , 0, 'C');
