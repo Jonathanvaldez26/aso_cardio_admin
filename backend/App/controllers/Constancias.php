@@ -567,13 +567,14 @@ html;
         // $nombre = explode(" ", $datos_user['nombre']);
 
         // $nombre_completo = $datos_user['prefijo'] . " " . $nombre[0] . " " . $datos_user['apellidop']. " " . $datos_user['apellidom'];
-        $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
-        $nombre_completo = mb_strtoupper($nombre_completo);
+        // $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
+        // $nombre_completo = mb_strtoupper($nombre_completo);
 
         $nombre = html_entity_decode($datos_user['nombre']);
+        $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
         $apellido = html_entity_decode($datos_user['apellido_paterno']);
         $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
-        $nombre_completo = ($nombre)." ".($apellido)." ".($segundo_apellido);
+        $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
         $nombre_completo = mb_strtoupper($nombre_completo);
 
         // echo $nombre_completo;
@@ -717,13 +718,14 @@ html;
         // $nombre = explode(" ", $datos_user['nombre']);
 
         // $nombre_completo = $datos_user['prefijo'] . " " . $nombre[0] . " " . $datos_user['apellidop']. " " . $datos_user['apellidom'];
-        $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
-        $nombre_completo = mb_strtoupper($nombre_completo);
+        // $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
+        // $nombre_completo = mb_strtoupper($nombre_completo);
 
         $nombre = html_entity_decode($datos_user['nombre']);
+        $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
         $apellido = html_entity_decode($datos_user['apellido_paterno']);
         $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
-        $nombre_completo = ($nombre)." ".($apellido)." ".($segundo_apellido);
+        $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
         $nombre_completo = mb_strtoupper($nombre_completo);
 
         // echo $nombre_completo;
@@ -1163,13 +1165,19 @@ html;
 html;
         
         foreach (GeneralDao::getAllUsuariosTalleres($politica) as $key => $value) {
-           
+            $nombre = html_entity_decode($value['nombre']);
+            $segundo_nombre = html_entity_decode($value['segundo_nombre']);
+            $apellido = html_entity_decode($value['apellido_paterno']);
+            $segundo_apellido = html_entity_decode($value['apellido_materno']);
+            $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
+
             $html .= <<<html
             <tr>
               <td>
                     <div class="d-flex px-1 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm text-black"><span class="fa fa-user" style="font-size: 13px"></span>{$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']}</h6>
+                            <h6 class="mb-0 text-sm text-black"><span class="fa fa-user" style="font-size: 13px"></span>{$nombre_completo}</h6>
                         </div>
                     </div>
                 </td>

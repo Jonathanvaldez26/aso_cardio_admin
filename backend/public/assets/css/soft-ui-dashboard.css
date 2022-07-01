@@ -10437,6 +10437,22 @@ fieldset:disabled .btn {
   background-color: turquoise;
 }
 
+.bg-yellow{
+  background-color: #fadc3c;
+}
+
+.badge-cardio {
+  color: #FFF;
+  background-color: red;
+}
+
+.badge-cardio[href]:hover,
+.badge-cardio[href]:focus {
+  color: #FFF;
+  text-decoration: none;
+  background-color: red;
+}
+
 .user-select-all {
   user-select: all !important;
 }

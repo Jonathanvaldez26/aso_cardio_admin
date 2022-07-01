@@ -853,6 +853,7 @@ html;
     public function getAllColaboradoresAsignadosByName($name){
 
         $html = "";
+        $constancias = "";
         foreach (GeneralDao::getAllColaboradoresByName($name) as $key => $value) {
             if ($value['alergia'] == '' && $value['alergia_cual'] == '') {
                 $alergia = 'No registro alergias';
@@ -976,6 +977,12 @@ html;
             }
 
 
+            $nombre = html_entity_decode($value['nombre']);
+            $segundo_nombre = html_entity_decode($value['segundo_nombre']);
+            $apellido = html_entity_decode($value['apellido_paterno']);
+            $segundo_apellido = html_entity_decode($value['apellido_materno']);
+            $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
 
             $html .= <<<html
             <tr>
@@ -988,7 +995,7 @@ html;
                     
                             <a href="/Asistentes/Detalles/{$value['clave']}" target="_blank">
                                 <h6 class="mb-0 text-sm text-move text-black">
-                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$value['nombre']} {$value['segundo_nombre']} {$value['apellido_paterno']} {$value['apellido_materno']} $estatus
+                                    <span class="fa fa-user-md" style="font-size: 13px"></span> {$nombre_completo} $estatus
                                     </h6>
                                 </a>
                             <div class="d-flex flex-column justify-content-center">
@@ -1026,23 +1033,40 @@ html;
 
         
 
-          <td style="text-align:left; vertical-align:middle;"> 
+        <!--<td style="text-align:left; vertical-align:middle;"> 
             {$pase_ida}
             {$pase_regreso}
             {$ticket_v}
             {$pru_covid}
             {$compro_covid}
-          </td>
-          
-          <td style="text-align:center; vertical-align:middle;">
+          </td>-->
+html;
+          if($value['politica'] == 1){
+            $html .= <<<html
+
+            <td style="text-align:center; vertical-align:middle;">
             <a href="/RegistroAsistencia/abrirpdfGafete/{$value['clave']}/{$value['ticket_virtual']}" class="btn btn-red-cardio btn-icon-only text-white" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i class="fas fa-print"> </i></a>     
 
-            <button class="btn btn-blue-cardio btn-icon-only text-white" data-toggle="modal" data-target="#modal-etiquetas-{$value['id_registro_acceso']}" id="btn-etiqueta-{$value['id_registro_acceso']}" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Imprimir Etiquetas" title="Imprimir Etiquetas"><i class="fas fa-tag"></i></button>
+            <a href="/Constancias/abrirConstancia/{$value['clave']}/{$value['politica']}" class="btn bg-pink btn-icon-only text-white" title="Imprimir Constancia Impresa" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Constancia Impresa" target="_blank"><i class="fas fa-print"> </i></a>
             
+            <a href="/Constancias/abrirConstanciaDigital/{$value['clave']}/{$value['politica']}" class="btn bg-yellow btn-icon-only text-white" title="Imprimir Constancia Digital" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Constancia Digital" target="_blank"><i class="fas fa-print"> </i></a>
+
             <!--button type="button" class="btn btn-outline-primary btn_qr" value="{$value['id_ticket_virtual']}"><span class="fa fa-qrcode" style="padding: 0px;"> {$ticket_virtual[0]['clave']}</span></button-->
           </td>
         </tr>
 html;
+          }
+          else{
+            $html .= <<<html
+
+            <td style="text-align:center; vertical-align:middle;">
+            <a href="/RegistroAsistencia/abrirpdfGafete/{$value['clave']}/{$value['ticket_virtual']}" class="btn btn-red-cardio btn-icon-only text-white" title="Imprimir Gafetes" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Imprimir Gafetes" target="_blank"><i class="fas fa-print"> </i></a>     
+            <span class="badge-cardio center">NO REGISTRADO</span>
+            <!--button type="button" class="btn btn-outline-primary btn_qr" value="{$value['id_ticket_virtual']}"><span class="fa fa-qrcode" style="padding: 0px;"> {$ticket_virtual[0]['clave']}</span></button-->
+          </td>
+        </tr>
+html;
+          }
         }
        
         return $html;
