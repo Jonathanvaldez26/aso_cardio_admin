@@ -380,4 +380,36 @@ INSERT INTO salario_minimo (id_salario, cantidad) VALUES (NULL, '$cantidad');
 sql;
       return $mysqli->insert($query);
     }
+
+    public static function getAllTalleres(){
+      $mysqli = Database::getInstance();
+      $query =<<<sql
+      SELECT ra.politica,COUNT(*) as total_registrado FROM registros_acceso ra
+      WHERE ra.politica = 1
+      GROUP BY ra.politica;
+  sql;
+  
+      return $mysqli->queryAll($query);
+    }
+
+    public static function getUserRegisterByClave($clave,$id_producto){
+      $mysqli = Database::getInstance(true);
+      $query =<<<sql
+      SELECT ua.* FROM registros_acceso ua 
+      WHERE ua.clave = '$clave' AND ua.politica = $id_producto;
+  sql;
+  
+    return $mysqli->queryAll($query);
+  }
+
+  public static function getAllUsuariosTalleres($politica){
+    $mysqli = Database::getInstance();
+    $query =<<<sql
+    SELECT ra.* FROM registros_acceso ra
+      WHERE ra.politica = $politica
+      ORDER BY ra.nombre;
+sql;
+
+    return $mysqli->queryAll($query);
+  }
 }

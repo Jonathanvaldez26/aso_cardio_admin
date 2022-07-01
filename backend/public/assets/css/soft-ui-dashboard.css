@@ -10410,11 +10410,11 @@ fieldset:disabled .btn {
 }
 
 .bg-gradient-pink-white {
-  background-image: linear-gradient(0deg, pink, #f7e1ebcc 75%);
+  background-image: linear-gradient(0deg, #4682c8, #4682c8 75%);
 }
 
 .bg-gradient-pink {
-  background-image: linear-gradient(0deg, pink, #f7e1ebcc 75%);
+  background-image: linear-gradient(0deg, #4682c8, #4682c8 75%);
 }
 
 .bg-gradient-red {
@@ -10430,7 +10430,7 @@ fieldset:disabled .btn {
 }
 
 .bg-pink{
-  background-color: pink;
+  background-color: #4682c8;
 }
 
 .bg-turquoise{

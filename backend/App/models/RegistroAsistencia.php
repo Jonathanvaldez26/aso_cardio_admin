@@ -413,6 +413,16 @@ sql;
 
     }
 
+    public static function insertImpGafete($user_id){
+        $mysqli = Database::getInstance();
+        $query=<<<sql
+        INSERT INTO impresion_gafete ( `user_id`, `fecha_hora`, `utilerias_administrador`) 
+        VALUES ($user_id,NOW(),0)
+sql;
+        $id = $mysqli->insert($query);
+        return $id;
+    }
+
 //     public static function addRegister($asistencia){
 //         $mysqli = Database::getInstance();
 //         $query=<<<sql
