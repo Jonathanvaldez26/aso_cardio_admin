@@ -738,7 +738,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/constancia_congreso_1.jpeg', 0, 0, 296, 210);
+        $pdf->Image('constancias/constancia_congreso_1.jpeg', 0, 0, 297, 210);
         // $pdf->Image('constancias/plantillas/'.$nombre_imagen, 0, 0, 296, 210);
         // $pdf->SetFont('Arial', 'B', 25);
         // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
@@ -1128,7 +1128,7 @@ html;
                         <div class="col-auto my-auto">
                             <div class="h-100">
                                 <h5 class="mb-1">
-                                    Constancias AMH
+                                    Constancias ASO CARDIO
                                 </h5>
                                 <p class="mb-0 font-weight-bold text-sm">
                                 </p>
