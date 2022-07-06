@@ -148,6 +148,15 @@ sql;
       return $mysqli->queryAll($query);
   }
 
+  public static function getByClaveRAN($clave){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT * FROM registros_acceso ra
+    WHERE ra.clave = '$clave'
+sql;
+    return $mysqli->queryAll($query);
+}
+
     public static function getRegistroAccesoById($id){
       $mysqli = Database::getInstance();
       $query=<<<sql
@@ -168,6 +177,15 @@ sql;
     WHERE ra.clave = '$clave'
 sql;
     return $mysqli->queryAll($query);
+}
+
+public static function getRegistroAccesoByClaveRAN($clave){
+  $mysqli = Database::getInstance();
+  $query=<<<sql
+  SELECT ra.*, ra.ticket_virtual AS clave_ticket, CONCAT(ra.ticket_virtual,'.png') AS qr FROM registros_acceso ra
+  WHERE ra.clave = '$clave'
+sql;
+  return $mysqli->queryAll($query);
 }
 
   public static function getRegistroAccesoHabitacionByClaveRA($clave){
@@ -215,6 +233,15 @@ sql;
 sql;
       return $mysqli->queryAll($query);
   }
+
+  public static function getTotalByClaveRAN($clave){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT * FROM registros_acceso ra 
+    WHERE ra.clave = '$clave'
+sql;
+    return $mysqli->queryAll($query);
+}
 
     public static function getIdRegistroAcceso($id){
       $mysqli = Database::getInstance();

@@ -408,8 +408,8 @@
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                             Línea de Soporte
                                                             <br> <br>
-                                                            <a href="mailto:jvaldez_2610@hotmail.com">
-                                                                <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> jvaldez_2610@hotmail.com</h6>
+                                                            <a href="mailto:carlos.cruz@grupolahe.com">
+                                                                <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulk" style="font-size: 13px"></span> carlos.cruz@grupolahe.com</h6>
                                                             </a>
                                                         </p>
                                                     </div>

@@ -224,8 +224,8 @@ html;
             <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 html;
-        $detalles = AsistentesDao::getByClaveRA($id);
-        $detalles_registro = AsistentesDao::getTotalByClaveRA($id);
+        $detalles = AsistentesDao::getByClaveRAN($id);
+        $detalles_registro = AsistentesDao::getTotalByClaveRAN($id);
 
         if ($detalles_registro[0]['img'] == '') {
             $img_asistente = <<<html
@@ -435,11 +435,11 @@ html;
             }
         }
 
-        $email = AsistentesDao::getByClaveRA($id)[0]['usuario'];
-        $clave_user = AsistentesDao::getRegistroAccesoByClaveRA($id)[0];
-        $tv = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['ticket_virtual'];
-        $nombre = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['nombre'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['segundo_nombre'];
-        $apellidos = AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_paterno'].' '.AsistentesDao::getRegistroAccesoByClaveRA($id)[0]['apellido_materno'];
+        $email = AsistentesDao::getByClaveRAN($id)[0]['usuario'];
+        $clave_user = AsistentesDao::getRegistroAccesoByClaveRAN($id)[0];
+        $tv = AsistentesDao::getRegistroAccesoByClaveRAN($id)[0]['ticket_virtual'];
+        $nombre = AsistentesDao::getRegistroAccesoByClaveRAN($id)[0]['nombre'].' '.AsistentesDao::getRegistroAccesoByClaveRAN($id)[0]['segundo_nombre'];
+        $apellidos = AsistentesDao::getRegistroAccesoByClaveRAN($id)[0]['apellido_paterno'].' '.AsistentesDao::getRegistroAccesoByClaveRAN($id)[0]['apellido_materno'];
         if ($clave_user['ticket_virtual'] == '' || $clave_user['ticket_virtual'] == NULL || $clave_user['ticket_virtual'] == 'NULL') {
             $msg_clave = 'No posee ningún código';
             $btn_clave = '';
@@ -1533,7 +1533,7 @@ html;
 
     public function abrirpdf($clave, $noPages = null, $no_habitacion = null)
     {
-        $datos_user = AsistentesDao::getRegistroAccesoByClaveRA($clave)[0];
+        $datos_user = AsistentesDao::getRegistroAccesoByClaveRAN($clave)[0];
         // $nombre_completo = strtoupper($datos_user['nombre'] . " " . $datos_user['apellido_paterno'] . " " . $datos_user['apellido_materno']) ;
         //ABRIRPDF ETIQUETAS
         $nombre = html_entity_decode($datos_user['nombre']);

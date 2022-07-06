@@ -542,9 +542,9 @@
                                     </div>
 
                                     <div class="col-12 col-lg-6">
-                                        <label class="form-label">Apellido Materno *</label>
+                                        <label class="form-label">Apellido Materno</label>
                                         <div class="input-group">
-                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_materno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" pattern="[a-zA-Z ÑñáÁéÉíÍóÚ]*{2,254}" class="form-control" type="text" placeholder="Thompson" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['apellido_materno'] ?>" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div>
 
@@ -552,14 +552,14 @@
 
                                 <div class="row">
                                     <div class="col-12 col-lg-6">
-                                        <label class="form-label mt-4">Fecha de Nacimiento * </label>
+                                        <label class="form-label mt-4">Fecha de Nacimiento</label>
                                         <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"  value="<?= $detalles_registro['fecha_nacimiento'] ?>">
                                     </div>
 
                                     <div class="col-lg-6 col-12">
-                                        <label class="form-label mt-4">Número de Telefono *</label>
+                                        <label class="form-label mt-4">Número de Telefono</label>
                                         <div class="input-group">
-                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>" required>
+                                            <input id="telefono" name="telefono" minlength="10" maxlength="10" pattern="[0-9]" class="form-control" type="number" placeholder="+40 735 631 620" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['telefono'] ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -568,7 +568,7 @@
                                     <div class="col-lg-12 col-12">
                                         <label class="form-label mt-4">Email Registrado y Verificado *</label>
                                         <div class="input-group">
-                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['usuario'] ?>" readonly>
+                                            <input id="email" name="email" maxlength="49" class="form-control" type="email" placeholder="example@email.com" onfocus="focused(this)" onfocusout="defocused(this)" value="<?= $detalles_registro['email'] ?>" readonly>
                                         </div>
                                     </div>
                                 </div>

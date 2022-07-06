@@ -485,7 +485,7 @@
                                                         </h5>
                                                         <p class="mb-0 font-weight-bold text-sm">
                                                             <br> <br>
-                                                            <a href="mailto:jvaldez_2610@hotmail.com">
+                                                            <a href="mailto:carlos.cruz@grupolahe.com">
                                                                 <h6 class="mb-0 text-sm"><span class="fa fa-mail-bulka" style="font-size: 13px"></span> </h6>
                                                             </a>
                                                         </p>
