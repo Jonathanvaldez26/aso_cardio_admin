@@ -26,19 +26,19 @@ sql;
 
   public static function getAllColaboradoresByName($search){
     $mysqli = Database::getInstance();
-    $query =<<<sql
-    SELECT ra.id_registro_acceso, ua.utilerias_asistentes_id, ua.status, ra.telefono, ua.usuario, ra.ticket_virtual, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, ra.genero, ra.alergia, ra.alergia_cual, ra.especialidad, ra.politica ,ra.clave, lp.nombre as nombre_linea
-    FROM registros_acceso ra
-    LEFT JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso)
-    INNER JOIN linea_principal lp ON (ra.especialidad = lp.id_linea_principal)
-    AND CONCAT_WS(ra.email,ra.nombre,ra.segundo_nombre,ra.apellido_materno,ra.apellido_paterno,ra.ticket_virtual) LIKE '%$search%';
-sql;
-
-// $query =<<<sql
-//     SELECT *
-//     FROM registros_acceso 
-//     WHERE CONCAT_WS(email,nombre,segundo_nombre,apellido_materno,apellido_paterno,ticket_virtual) LIKE '%$search%';
+    //REGISTROS CON UTILERIAS ASISTENTES
+//     $query =<<<sql
+//     SELECT ra.id_registro_acceso, ua.utilerias_asistentes_id, ua.status, ra.telefono, ua.usuario, ra.ticket_virtual, ra.nombre, ra.segundo_nombre, ra.apellido_paterno, ra.apellido_materno, ra.img, ra.genero, ra.alergia, ra.alergia_cual, ra.especialidad, ra.politica ,ra.clave, lp.nombre as nombre_linea
+//     FROM registros_acceso ra
+//     LEFT JOIN utilerias_asistentes ua ON (ra.id_registro_acceso = ua.id_registro_acceso)
+//     INNER JOIN linea_principal lp ON (ra.especialidad = lp.id_linea_principal)
+//     AND CONCAT_WS(ra.email,ra.nombre,ra.segundo_nombre,ra.apellido_materno,ra.apellido_paterno,ra.ticket_virtual) LIKE '%$search%';
 // sql;
+//REGISTROS ACCESOS NADA MÁS
+$query =<<<sql
+    SELECT * FROM registros_acceso 
+    WHERE CONCAT_WS(email,nombre,segundo_nombre,apellido_materno,apellido_paterno,ticket_virtual) LIKE '%$search%';
+sql;
     return $mysqli->queryAll($query);
   }
 
