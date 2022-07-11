@@ -599,9 +599,9 @@ html;
         //$num_linea =utf8_decode("Línea: 39");
         //$num_linea2 =utf8_decode("Línea: 39");
         if($id_producto == 1){
-        $pdf->SetXY(15, 80);
+        $pdf->SetXY(15, 65);
         
-        $pdf->SetFont('Arial', 'B', 30);
+        $pdf->SetFont('Arial', 'B', 22);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
@@ -738,7 +738,7 @@ html;
         $pdf->SetFont('Arial', 'B', 8);    //Letra Arial, negrita (Bold), tam. 20
         $pdf->setY(1);
         $pdf->SetFont('Arial', 'B', 16);
-        $pdf->Image('constancias/constancia_congreso_1.jpeg', 0, 0, 297, 210);
+        $pdf->Image('constancias/constancia_congreso_2.jpeg', 0, 0, 297, 210);
         // $pdf->Image('constancias/plantillas/'.$nombre_imagen, 0, 0, 296, 210);
         // $pdf->SetFont('Arial', 'B', 25);
         // $pdf->Multicell(133, 80, $clave_ticket, 0, 'C');
@@ -750,9 +750,9 @@ html;
         //$num_linea2 =utf8_decode("Línea: 39");
         
         if($id_producto == 1){
-            $pdf->SetXY(15, 80);
+            $pdf->SetXY(15, 65);
             
-            $pdf->SetFont('Arial', 'B', 30);
+            $pdf->SetFont('Arial', 'B', 22);
             #4D9A9B
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
