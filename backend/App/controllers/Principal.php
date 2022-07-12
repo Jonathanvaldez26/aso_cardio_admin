@@ -46,6 +46,7 @@ html;
       $utileriasHidden = (Controller::getPermisosUsuario($this->__usuario, "seccion_utilerias", 1)==0)? "style=\"display:none;\"" : "";  
 
       $all_ra = AsistentesDao::getAllRegistrosAcceso();
+      
       $this->setTicketVirtual($all_ra);
       $this->setClaveRA($all_ra);
       
@@ -73,7 +74,7 @@ html;
 
     public function setTicketVirtual($asistentes){
         foreach ($asistentes as $key => $value) {
-            if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL' || $value['clave'] == ' ') {
+            if ($value['clave'] == '' || $value['clave'] == NULL || $value['clave'] == 'NULL' || $value['clave'] == ' ' || $value['ticket_virtual'] == '' || $value['ticket_virtual'] == NULL || $value['ticket_virtual'] == 'NULL' || $value['ticket_virtual'] == ' ') {
                 $clave_10 = $this->generateRandomString(6);
                 AsistentesDao::updateTicketVirtualRA($value['id_registro_acceso'], $clave_10);
                 $this->generaterQr($clave_10);
