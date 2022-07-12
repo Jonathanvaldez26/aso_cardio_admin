@@ -123,19 +123,29 @@ sql;
         return $mysqli->queryAll($query);
     }
 
-    public static function getInfo($clave){
-        $mysqli = Database::getInstance();
-        $query=<<<sql
-        SELECT ra.*, ua.utilerias_asistentes_id, ra.ticket_virtual as clave_ticket
-        FROM registros_acceso ra
-        INNER JOIN utilerias_asistentes ua
-        ON ua.id_registro_acceso = ra.id_registro_acceso
-        WHERE ra.ticket_virtual = '$clave'
+//     public static function getInfo($clave){
+//         $mysqli = Database::getInstance();
+//         $query=<<<sql
+//         SELECT ra.*, ua.utilerias_asistentes_id, ra.ticket_virtual as clave_ticket
+//         FROM registros_acceso ra
+//         INNER JOIN utilerias_asistentes ua
+//         ON ua.id_registro_acceso = ra.id_registro_acceso
+//         WHERE ra.ticket_virtual = '$clave'
+// sql;
+
+//         return $mysqli->queryAll($query);
+//     }
+
+public static function getInfo($clave){
+    $mysqli = Database::getInstance();
+    $query=<<<sql
+    SELECT ra.*, ra.id_registro_acceso as utilerias_asistentes_id, ra.ticket_virtual as clave_ticket
+    FROM registros_acceso ra
+    WHERE ra.ticket_virtual = '$clave'
 sql;
 
-        return $mysqli->queryAll($query);
-    }
-
+    return $mysqli->queryAll($query);
+}
 
     public static function getInfoDirectivos($clave){
         $mysqli = Database::getInstance();
@@ -398,7 +408,7 @@ sql;
     public static function findAsistantById($id,$id_asist){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT * FROM `registros_asistencia` 
+        SELECT * FROM registros_asistencia 
         WHERE utilerias_asistentes_id = $id and id_asistencias = $id_asist
 sql;
         return $mysqli->queryAll($query);
