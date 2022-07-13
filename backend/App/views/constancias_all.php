@@ -156,9 +156,8 @@
                     </div>
                 </div>
             </footer>
-
+            <?php echo $modal;?>
     </main>
-    <?php echo $modal;?>
 </body>
 
 <?php echo $footer; ?>
@@ -358,6 +357,46 @@
                     $("#a-download" + valueButton).attr("href", respuesta.ruta_constancia);
                     $("#a-download" + valueButton).attr("download", "");
 
+                },
+                error: function(respuesta) {
+                    console.log(respuesta);
+                }
+
+            });
+        });
+
+        $("#update_detalles").on("submit", function(event) {
+            event.preventDefault();
+
+            var formData = new FormData(document.getElementById("update_detalles"));
+            for (var value of formData.values()) {
+                console.log(value);
+            }
+
+            $.ajax({
+                url: "/Asistentes/Actualizar",
+                type: "POST",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    console.log("Procesando....");
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+
+                    if (respuesta == 'success') {
+                        swal("!Se actualizaron tus datos correctamente!", "", "success").
+                        then((value) => {
+                            window.location.reload();
+                        });
+                    } else {
+                        swal("!Usted No Actualizó Nada!", "", "warning").
+                        then((value) => {
+                            //window.location.replace("/Asistentes")
+                        });
+                    }
                 },
                 error: function(respuesta) {
                     console.log(respuesta);

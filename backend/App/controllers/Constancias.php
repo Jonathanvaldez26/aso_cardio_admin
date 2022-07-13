@@ -45,7 +45,7 @@ class Constancias extends Controller
     }
 
     //Metodo para reaslizar busqueda de usuarios, sin este metodo no podemos obtener informacion en la vista
-    public function Talleres() {    
+    public function Talleres() {  
 
         $modal = '';
         foreach (GeneralDao::getAllTalleres() as $key => $value) {
@@ -71,16 +71,15 @@ class Constancias extends Controller
     //     View::render("constancias_all");
     // }
 
-    public function TallerPorIdProducto($politica) {
+    public function ConstanciasRegistrados() {
 
         $modal = '';
-        // foreach (GeneralDao::getAllUsuariosTalleres($id_producto) as $key => $value) {
-        //     // $this->getAllUsuariosTaller();
-        //     var_dump($value);     
-        // }
-
-        View::set('modal',$modal);    
-        View::set('tabla', $this->getAllUsuariosTaller($politica));
+        foreach (GeneralDao::getAllUsuariosTalleres() as $key => $value) {
+            $modal .= $this->generarModal($value);
+        }
+        
+        View::set('modal',$modal);
+        View::set('tabla', $this->getAllUsuariosTaller());
         View::set('asideMenu',$this->_contenedor->asideMenu());    
         View::render("constancias_all");
     }
@@ -1082,13 +1081,12 @@ html;
         </thead>
 html;
         foreach (GeneralDao::getAllTalleres() as $key => $value) {
-           
             $html .= <<<html
             <tr>
               <td>
                     <div class="d-flex px-1 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm text-black"><span class="" style="font-size: 13px"></span>{$value['politica']}.- REGISTRADOS</h6>
+                            <h6 class="mb-0 text-sm text-black"><span class="" style="font-size: 13px"></span>{$value['politica']}ACCESOS A REGISTRO</h6>
                         </div>
                     </div>
                 </td>
@@ -1102,8 +1100,9 @@ html;
                 </td>
 
                 <td style="text-align:center;">
-                    <a href="/Constancias/TallerPorIdProducto/{$value['politica']}" class="btn bg-pink btn-icon-only text-white" title="Lista de registrados" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Lista de registrados"><i class="fas fa-list"> </i></a>
+                    <a href="/Constancias/ConstanciasRegistrados/" class="btn bg-pink btn-icon-only text-white" title="Lista de registrados" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Lista de registrados"><i class="fas fa-list"> </i></a>
                 </td>
+
             </tr>
 html;
         }
@@ -1111,8 +1110,7 @@ html;
         return $html;
     }
 
-    public function getAllUsuariosTaller($politica){
-
+    public function getAllUsuariosTaller(){
         $html = "";
         $html .= <<<html
         <div class="container-fluid">
@@ -1160,11 +1158,21 @@ html;
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nombre Registrado</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Constancias</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Editar Usuario</th>
             </tr>
         </thead>
 html;
-        
-        foreach (GeneralDao::getAllUsuariosTalleres($politica) as $key => $value) {
+        foreach (GeneralDao::getAllUsuariosTalleres() as $key => $value) {
+            $status = '';
+            if($value['politica'] == 1){
+                $status.= <<<html
+                <span class="badge badge-success" style="background-color: #4682C8; color:white; text-align: center;"><strong>Usuario Registrado</strong></span>
+    html;
+            }else{
+            $status.= <<<html
+                <span class="badge badge-success" style="background-color: #960025; color:white; text-align: center;"><strong>NO registrado</strong></span>
+    html;
+            }
             $nombre = html_entity_decode($value['nombre']);
             $segundo_nombre = html_entity_decode($value['segundo_nombre']);
             $apellido = html_entity_decode($value['apellido_paterno']);
@@ -1185,14 +1193,18 @@ html;
                 <td>
                     <div class="d-flex px-1 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm text-black"><span class="" style="font-size: 13px"></span>APROBADO</h6>
+                            {$status}
                         </div>
                     </div>
                 </td>
 
                 <td style="text-align:center; vertical-align:middle;">
-                    <a href="/Constancias/abrirConstancia/{$value['clave']}/{$value['politica']}" class="btn bg-pink btn-icon-only text-white" title="Impresa" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Impresa" target="_blank"><i class="fas fa-print"> </i></a>
-                    <a href="/Constancias/abrirConstanciaDigital/{$value['clave']}/{$value['politica']}" class="btn bg-turquoise btn-icon-only text-white" title="Digital" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Digital" target="_blank"><i class="fas fa-print"> </i></a>
+                    <a href="/Constancias/abrirConstancia/{$value['clave']}/{$value['constancia']}" class="btn bg-pink btn-icon-only text-white" title="Impresa" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Impresa" target="_blank"><i class="fas fa-print"> </i></a>
+                    <a href="/Constancias/abrirConstanciaDigital/{$value['clave']}/{$value['constancia']}" class="btn bg-turquoise btn-icon-only text-white" title="Digital" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Digital" target="_blank"><i class="fas fa-print"> </i></a>
+                </td>
+
+                <td style="text-align:center; vertical-align:middle;">
+                    <button class="btn bg-turquoise btn-icon-only text-white" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
 html;
@@ -1201,65 +1213,65 @@ html;
         return $html;
     }
 
-    public function generarModal($datos){
+    public function generarModal($value){
         $modal = <<<html
-            <div class="modal fade" id="modal-etiquetas-{$datos['id_registro_acceso']}" role="dialog" aria-labelledby="" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-ver-pdf-Label">Etiquetas para {$datos['nombre']} {$datos['apellido_paterno']} {$datos['apellido_materno']} - {$datos['id_registro_acceso']}</h5>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <input hidden id="id_registro_acceso" name="id_registro_acceso" type="text" value="{$datos['id_registro_acceso']}" readonly>
-                            <div class="row">
-                                <!--form action="" id="form_etiquetas"-->
-                                    <div class="row">
-                                    
-                                        <script>
-                                        $(document).ready(function() {
-                                            
-
-                                            $('#btn_imprimir_etiquetas_{$datos['id_registro_acceso']}').on("click", function(event) {
-                                                no_habitacion_{$datos['id_registro_acceso']} = $("#no_habitacion_{$datos['id_registro_acceso']}").val();
-                                                clave_ra_{$datos['id_registro_acceso']} = $("#clave_ra_{$datos['id_registro_acceso']}").val();
-                                                no_etiquetas_{$datos['id_registro_acceso']} = $("#no_etiquetas_{$datos['id_registro_acceso']}").val();
-
-                                                console.log(no_habitacion_{$datos['id_registro_acceso']});
-                                                console.log(no_etiquetas_{$datos['id_registro_acceso']});
-                                                console.log(clave_ra_{$datos['id_registro_acceso']});
-                                                $('#btn_imprimir_etiquetas_{$datos['id_registro_acceso']}').attr("href", "/Asistentes/abrirpdf/" + clave_ra_{$datos['id_registro_acceso']} + "/" + no_etiquetas_{$datos['id_registro_acceso']} + "/" + no_habitacion_{$datos['id_registro_acceso']});
-                                            });
-                                        });
-                                        </script>
-
-                                        <div class="col-md-12">
-                                            <input type="hidden" id="clave_ra_{$datos['id_registro_acceso']}" name="clave_ra_{$datos['id_registro_acceso']}" value="{$datos['clave']}" readonly>
-                                        </div>
-
-                                        <!--div class="col-md-10">
-                                            <label hidden>Número de Habitación</label>
-                                            
-                                        </div-->
-
-                                        <div class="col-md-6">
-                                        <input type="number" id="no_habitacion_{$datos['id_registro_acceso']}" value="0" readonly hidden name="no_habitacion_{$datos['id_registro_acceso']}" value="0" readonly hidden class="form-control">
-                                            <label>Número de etiquetas</label>
-                                            <input type="number" id="no_etiquetas_{$datos['id_registro_acceso']}" name="no_etiquetas_{$datos['id_registro_acceso']}" class="form-control">
-                                        </div>
-
-                                        <div class="col-md-3 m-auto">
-                                            <a href="" id="btn_imprimir_etiquetas_{$datos['id_registro_acceso']}" target="_blank" class="btn btn-info mt-4" type="submit">Imprimir Etiquetas</a>
+            <div class="modal fade" id="editar-asistente" tabindex="-1" role="dialog" aria-labelledby="editar-asistenteLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="max-width: 800px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editar-asistenteLabel">Editar Asistente</h5>
+                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" id="update_detalles" action="" method="POST">
+                            <div class="card-body pt-0">
+                                <div class="row">
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Nombre *</label>
+                                        <div class="input-group">
+                                            <input id="nombre" name="nombre" maxlength="29" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                                         </div>
                                     </div>
-                                <!--/form-->
+
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Segundo Nombre </label>
+                                        <div class="input-group">
+                                            <input id="segundo_nombre" name="segundo_nombre" maxlength="49" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['segundo_nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Apellido Paterno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['apellido_paterno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-6">
+                                        <label class="form-label">Apellido Materno *</label>
+                                        <div class="input-group">
+                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['apellido_materno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="button-row d-flex mt-4 col-12">
+                                        <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
+                                        <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 html;
 
         return $modal;

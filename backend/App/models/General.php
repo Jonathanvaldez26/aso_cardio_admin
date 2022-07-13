@@ -385,8 +385,7 @@ sql;
       $mysqli = Database::getInstance();
       $query =<<<sql
       SELECT ra.politica,COUNT(*) as total_registrado FROM registros_acceso ra
-      WHERE ra.politica = 1
-      GROUP BY ra.politica;
+      GROUP BY ra.constancia;
   sql;
   
       return $mysqli->queryAll($query);
@@ -396,18 +395,17 @@ sql;
       $mysqli = Database::getInstance(true);
       $query =<<<sql
       SELECT ua.* FROM registros_acceso ua 
-      WHERE ua.clave = '$clave' AND ua.politica = $id_producto;
+      WHERE ua.clave = '$clave' AND ua.constancia = $id_producto;
   sql;
   
     return $mysqli->queryAll($query);
   }
 
-  public static function getAllUsuariosTalleres($politica){
+  public static function getAllUsuariosTalleres(){
     $mysqli = Database::getInstance();
     $query =<<<sql
     SELECT ra.* FROM registros_acceso ra
-      WHERE ra.politica = $politica
-      ORDER BY ra.nombre;
+    ORDER BY ra.nombre;
 sql;
 
     return $mysqli->queryAll($query);
