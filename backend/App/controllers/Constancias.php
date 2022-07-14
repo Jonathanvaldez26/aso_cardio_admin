@@ -1178,7 +1178,7 @@ html;
 
             $html .= <<<html
             <tr>
-              <td>
+                <td>
                     <div class="d-flex px-1 py-1">
                         <div class="d-flex flex-column justify-content-center">
                             <h6 class="mb-0 text-sm text-black"><span class="fa fa-user" style="font-size: 13px"></span>{$nombre_completo}</h6>
@@ -1196,11 +1196,11 @@ html;
 
                 <td style="text-align:center; vertical-align:middle;">
                     <a href="/Constancias/abrirConstancia/{$value['clave']}/{$value['constancia']}" class="btn bg-pink btn-icon-only text-white" title="Impresa" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Impresa" target="_blank"><i class="fas fa-print"> </i></a>
-                    <a href="/Constancias/abrirConstanciaDigital/{$value['clave']}/{$value['constancia']}" class="btn bg-turquoise btn-icon-only text-white" title="Digital" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Digital" target="_blank"><i class="fas fa-print"> </i></a>
+                    <a href="/Constancias/abrirConstanciaDigital/{$value['clave']}/{$value['constancia']}" class="btn bg-yellow btn-icon-only text-white" title="Digital" data-bs-placement="top" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Digital" target="_blank"><i class="fas fa-print"> </i></a>
                 </td>
 
                 <td style="text-align:center; vertical-align:middle;">
-                    <button class="btn bg-turquoise btn-icon-only text-white" type="button" title="Editar Usuario" data-toggle="modal" data-target="#editar-usuario{$value['id_registro_acceso']}"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-red-cardio btn-icon-only text-white" type="button" title="Editar Usuario" data-toggle="modal" data-target="#editar-usuario{$value['id_registro_acceso']}"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
 html;
@@ -1237,22 +1237,22 @@ html;
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="nombre">Nombre <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{$datos['nombre']}">
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{$datos['nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="segundo_nombre">Segundo nombre <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre" value="{$datos['segundo_nombre']}">
+                                <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre" value="{$datos['segundo_nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_paterno">Apellido paterno <span class="required">*</span></label> 
-                                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido paterno" value="{$datos['apellido_paterno']}">
+                                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido paterno" value="{$datos['apellido_paterno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_materno">Apellido materno <span class="required">*</span></label> 
-                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" placeholder="Apellido materno" value="{$datos['apellido_materno']}">
+                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" placeholder="Apellido materno" value="{$datos['apellido_materno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
                             </div>
                             
                             <div class="modal-footer">

@@ -275,7 +275,7 @@
                                             <!-- <h6 class="mb-3 mt-4">Billing Information</h6> -->
                                             <div class="mt-2 nav-wrapper active position-relative end-0">
                                                 <ul class="nav nav-pills nav-fill p-1 bg-transparent" role="tablist">
-                                                    <li class="nav-item">
+                                                    <!-- <li class="nav-item">
                                                         <a class="nav-link mb-0 px-0 py-1  active" href="#cam4" data-bs-toggle="tab" role="tab" aria-selected="true">
                                                             <span class="fa fa-syringe"></span>
                                                             <span class="ms-1">Vacunación</span>
@@ -286,9 +286,9 @@
                                                             <span class="fa fa-virus"></span>
                                                             <span class="ms-1">Covid</span>
                                                         </a>
-                                                    </li>
+                                                    </li> -->
                                                     <li class="nav-item">
-                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="false">
+                                                        <a class="nav-link mb-0 px-0 py-1" href="#cam1" data-bs-toggle="tab" role="tab" aria-selected="true">
                                                             <span class="fa fa-plane"></span>
                                                             <span class="ms-1">Vuelos</span>
                                                         </a>
@@ -376,7 +376,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
+                                                <!-- <div class="tab-pane fade position-relative height-350 border-radius-lg" id="cam3" role="tabpanel" aria-labelledby="cam3">
                                                     <div class="row mt-4">
                                                         <div class="card mb-4">
                                                             <div class="card-header pb-0">
@@ -404,9 +404,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="tab-pane fade position-relative height-350 border-radius-lg active show" id="cam4" role="tabpanel" aria-labelledby="cam4">
+                                                <!-- <div class="tab-pane fade position-relative height-350 border-radius-lg active show" id="cam4" role="tabpanel" aria-labelledby="cam4">
                                                     <div class="row mt-4">
                                                         <div class="card mb-4">
                                                             <div class="card-header pb-0">
@@ -434,7 +434,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
                                                 <div class="tab-pane fade show position-relative height-350 border-radius-lg" id="cam5" role="tabpanel" aria-labelledby="cam2">
                                                     <style>
