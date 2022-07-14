@@ -1237,22 +1237,22 @@ html;
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="nombre">Nombre <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{$datos['nombre']}" required>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{$datos['nombre']}">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="segundo_nombre">Segundo nombre <span class="required">*</span></label>
-                                <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre" value="{$datos['segundo_nombre']}" required>
+                                <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre" value="{$datos['segundo_nombre']}">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_paterno">Apellido paterno <span class="required">*</span></label> 
-                                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido paterno" value="{$datos['apellido_paterno']}" required>
+                                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido paterno" value="{$datos['apellido_paterno']}">
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_materno">Apellido materno <span class="required">*</span></label> 
-                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" placeholder="Apellido materno" value="{$datos['apellido_materno']}" required>
+                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" placeholder="Apellido materno" value="{$datos['apellido_materno']}">
                             </div>
                             
                             <div class="modal-footer">
