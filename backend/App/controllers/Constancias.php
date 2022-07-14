@@ -49,7 +49,7 @@ class Constancias extends Controller
 
         $modal = '';
         foreach (GeneralDao::getAllTalleres() as $key => $value) {
-            $modal .= $this->generarModal($value);
+            $modal .= $this->generarModalEditUser($value);
         }
         
         View::set('modal',$modal);    
@@ -75,7 +75,7 @@ class Constancias extends Controller
 
         $modal = '';
         foreach (GeneralDao::getAllUsuariosTalleres() as $key => $value) {
-            $modal .= $this->generarModal($value);
+            $modal .= $this->generarModalEditUser($value);
         }
         
         View::set('modal',$modal);
@@ -242,8 +242,8 @@ html;
             <!--script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
             <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" /-->
 
-            <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
-            <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+            <script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js" defer></script>
+            <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
 html;
         $detalles = AsistentesDao::getByClaveRA($id);
         $detalles_registro = AsistentesDao::getTotalByClaveRA($id);
@@ -379,20 +379,16 @@ html;
     public function updateData()
     {
         $data = new \stdClass();
+        $data->_id_registro_acceso = MasterDom::getData('id_registro_acceso');
         $data->_nombre = MasterDom::getData('nombre');
+        $data->_segundo_nombre = MasterDom::getData('segundo_nombre');
         $data->_apellido_paterno = MasterDom::getData('apellido_paterno');
         $data->_apellido_materno = MasterDom::getData('apellido_materno');
-        $data->_address = MasterDom::getData('address');
-        $data->_pais = MasterDom::getData('pais');
-        $data->_estado = MasterDom::getData('estado');
-        $data->_email = MasterDom::getData('email');
-        $data->_telephone = MasterDom::getData('telephone');
         // $data->_utilerias_administrador_id = $_SESSION['utilerias_administradores_id'];
-        // var_dump($data);
 
-        $id = AsistentesDao::update($data);
 
-        // var_dump($id);
+        $id = GeneralDao::update($data);
+
         if ($id) {
             echo "success";
             // $this->alerta($id,'add');
@@ -1204,7 +1200,7 @@ html;
                 </td>
 
                 <td style="text-align:center; vertical-align:middle;">
-                    <button class="btn bg-turquoise btn-icon-only text-white" type="button" title="Editar Asistente" data-toggle="modal" data-target="#editar-asistente"><i class="fas fa-edit"></i></button>
+                    <button class="btn bg-turquoise btn-icon-only text-white" type="button" title="Editar Usuario" data-toggle="modal" data-target="#editar-usuario{$value['id_registro_acceso']}"><i class="fas fa-edit"></i></button>
                 </td>
             </tr>
 html;
@@ -1213,65 +1209,65 @@ html;
         return $html;
     }
 
-    public function generarModal($value){
+    public function generarModalEditUser($datos){
         $modal = <<<html
-            <div class="modal fade" id="editar-asistente" tabindex="-1" role="dialog" aria-labelledby="editar-asistenteLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="max-width: 800px;">
+            <div class="modal fade" id="editar-usuario{$datos['id_registro_acceso']}" role="dialog" aria-labelledby="" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editar-asistenteLabel">Editar Asistente</h5>
-                        <button type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">X</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" id="update_detalles" action="" method="POST">
-                            <div class="card-body pt-0">
-                                <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label">Nombre *</label>
-                                        <div class="input-group">
-                                            <input id="nombre" name="nombre" maxlength="29" class="form-control" type="text" placeholder="Alec" required="" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Editar Usuario
+                    </h5>
 
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label">Segundo Nombre </label>
-                                        <div class="input-group">
-                                            <input id="segundo_nombre" name="segundo_nombre" maxlength="49" class="form-control" type="text" placeholder="Alec" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['segundo_nombre']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div>
-                                </div>
+                    <span type="button" class="btn bg-gradient-danger" data-dismiss="modal" aria-label="Close">
+                        X
+                    </span>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 12px">Ingrese los nuevos datos del usuario seleccionado.</p>
+                    <hr>
+                    <form method="POST" enctype="multipart/form-data" class="form_datos_edit">
+                        <div class="form-group row">
 
-                                <div class="row">
+                            <div class="form-group col-md-4" style="display:none;">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="id_registro_acceso">Id Usuario <span class="required">*</span></label>
+                                <input class="form-control" id="id_registro_acceso" name="id_registro_acceso" placeholder="ID Usuario" value="{$datos['id_registro_acceso']}" require readonly>
+                                <span id="msg_email" style="font-size: 0.75rem; font-weight: 700;margin-bottom: 0.5rem;"></span>
+                            </div>
 
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label">Apellido Paterno *</label>
-                                        <div class="input-group">
-                                            <input id="apellido_paterno" name="apellido_paterno" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['apellido_paterno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="nombre">Nombre <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" value="{$datos['nombre']}" required>
+                            </div>
 
-                                    <div class="col-12 col-lg-6">
-                                        <label class="form-label">Apellido Materno *</label>
-                                        <div class="input-group">
-                                            <input id="apellido_materno" name="apellido_materno" maxlength="29" class="form-control" type="text" placeholder="Thompson" required="required" onfocus="focused(this)" onfocusout="defocused(this)" value="{$value['apellido_materno']}" style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();">
-                                        </div>
-                                    </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="segundo_nombre">Segundo nombre <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="segundo_nombre" name="segundo_nombre" placeholder="Segundo nombre" value="{$datos['segundo_nombre']}" required>
+                            </div>
 
-                                </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_paterno">Apellido paterno <span class="required">*</span></label> 
+                                <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" placeholder="Apellido paterno" value="{$datos['apellido_paterno']}" required>
+                            </div>
 
-                                <div class="row">
-                                    <div class="button-row d-flex mt-4 col-12">
-                                        <button class="btn bg-gradient-success ms-auto mb-0 mx-4" type="submit" title="Actualizar">Actualizar</button>
-                                        <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
-                                    </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label col-md-12 col-sm-1 col-xs-12" for="apellido_materno">Apellido materno <span class="required">*</span></label> 
+                                <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" placeholder="Apellido materno" value="{$datos['apellido_materno']}" required>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <div class="button-row d-flex mt-4 col-12">
+                                    <button class="btn bg-gradient-success ms-auto mb-0 mx-4" name="btn_upload" id="btn_upload" type="submit" title="Actualizar">Actualizar</button>
+                                    <a class="btn bg-gradient-secondary mb-0 js-btn-prev" data-dismiss="modal" title="Prev">Cancelar</a>
                                 </div>
                             </div>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
                 </div>
             </div>
-        </div>
 html;
 
         return $modal;

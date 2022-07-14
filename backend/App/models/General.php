@@ -169,25 +169,35 @@ sql;
       UtileriasLog::addAccion($accion);
       return $id;
     }
-    public static function update($datos){
-        $mysqli = Database::getInstance(true);
+    
+    public static function update($data){
+      $mysqli = Database::getInstance(true);
       $query=<<<sql
-UPDATE catalogo_dia_festivo SET nombre = '122', descripcion = '1233', fecha = '2017-08-24', status = 2 WHERE catalogo_dia_festivo.catalogo_dia_festivo_id = :catalogo_dia_festivo_id;
+      UPDATE registros_acceso ra
+      SET ra.nombre = :nombre, ra.segundo_nombre = :segundo_nombre, ra.apellido_paterno = :apellido_paterno, ra.apellido_materno = :apellido_materno
+      WHERE ra.id_registro_acceso = :id_registro_acceso;
 sql;
+
+
       $parametros = array(
-          ':catalogo_dia_festivo_id'=>$lectores->_catalogo_dia_festivo_id,
-          ':nombre'=>$lectores->_nombre,
-          ':descripcion'=>$lectores->_descripcion,
-          ':fecha'=>$lectores->_fecha,
-          ':status'=>$lectores->_status
-        );
-        $accion = new \stdClass();
-        $accion->_sql= $query;
-        $accion->_parametros = $parametros;
-        $accion->_id = $lectores->_catalogo_dia_festivo_id;
-        UtileriasLog::addAccion($accion);
-        return $mysqli->update($query, $parametros);
-    }
+          ':id_registro_acceso'=>$data->_id_registro_acceso,
+          ':nombre'=>$data->_nombre,
+          ':segundo_nombre'=>$data->_segundo_nombre,
+          ':apellido_paterno'=>$data->_apellido_paterno,
+          ':apellido_materno'=>$data->_apellido_materno,
+      );
+
+      // var_dump($parametros);
+      // var_dump($query);
+      // exit;
+      // $accion = new \stdClass();
+      // $accion->_sql= $query;
+      // $accion->_parametros = $parametros;
+      // $accion->_id = $hotel->_id_hotel;
+      return $mysqli->update($query, $parametros);
+
+  }
+
     public static function delete($id){
 	$mysqli = Database::getInstance();
         $query=<<<sql
@@ -402,9 +412,10 @@ sql;
   }
 
   public static function getAllUsuariosTalleres(){
-    $mysqli = Database::getInstance();
+    $mysqli = Database::getInstance(true);
     $query =<<<sql
     SELECT ra.* FROM registros_acceso ra
+    WHERE id_registro_acceso < 11
     ORDER BY ra.nombre;
 sql;
 

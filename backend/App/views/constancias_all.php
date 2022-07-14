@@ -174,23 +174,6 @@
 <script>
     $(document).ready(function() {
 
-        $("#form_etiquetas").on("click", function(event) {
-            event.preventDefault();
-            var formData = new FormData(document.getElementById("form_etiquetas"));
-
-            no_habitacion = $("#no_habitacion").val();
-            clave_ra = $("#clave_ra").val();
-            no_etiquetas = $("#no_etiquetas").val();
-
-            console.log(no_habitacion);
-            console.log(clave_ra);
-            console.log(no_etiquetas);
-
-            $("#a_abrir_etiqueta").attr("href", "/Asistentes/abrirpdf/" + clave_ra + "/" + no_etiquetas + "/" + no_habitacion);
-            $("#a_abrir_etiqueta")[0].click();
-
-        });
-
         $('#constancias a').addClass('active');
         $('#constancias .fa-file').addClass('text-white');
 
@@ -364,46 +347,55 @@
 
             });
         });
+    });
+</script>
 
-        $("#update_detalles").on("submit", function(event) {
+<script>
+	$(".form_datos_edit").on("submit",function(event){
             event.preventDefault();
+            // var formData = new FormData(document.getElementById("form_datos_edit"));
+            var formData = $(this).serialize();
 
-            var formData = new FormData(document.getElementById("update_detalles"));
-            for (var value of formData.values()) {
-                console.log(value);
-            }
+            console.log(formData);
 
+            // for (var value of formData.values()) {
+            //     console.log(value);
+            // }
             $.ajax({
-                url: "/Asistentes/Actualizar",
+                url: "/Constancias/updateData",
                 type: "POST",
                 data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
+                // contentType: false,
+                // processData: false,
                 beforeSend: function() {
                     console.log("Procesando....");
+                    // alert('Se está borrando');
+
                 },
                 success: function(respuesta) {
                     console.log(respuesta);
 
-                    if (respuesta == 'success') {
-                        swal("!Se actualizaron tus datos correctamente!", "", "success").
+                    if(respuesta == 'success'){
+                        Swal.fire("¡Se actualizo el usuario correctamente!", "", "success").
                         then((value) => {
                             window.location.reload();
                         });
-                    } else {
-                        swal("!Usted No Actualizó Nada!", "", "warning").
+                    }else{
+                        Swal.fire("¡Hubo un error al actualizar el usuario!", "", "warning").
                         then((value) => {
-                            //window.location.replace("/Asistentes")
+                            window.location.reload();
                         });
                     }
                 },
                 error: function(respuesta) {
                     console.log(respuesta);
+                    // alert('Error');
+                    Swal.fire("¡Hubo un error al crear el archivo!", "", "warning").
+                    then((value) => {
+                        window.location.reload();
+                    });
                 }
-
             });
         });
 
-    });
 </script>
