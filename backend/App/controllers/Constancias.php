@@ -1082,7 +1082,7 @@ html;
               <td>
                     <div class="d-flex px-1 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                            <h6 class="mb-0 text-sm text-black"><span class="" style="font-size: 13px"></span>{$value['politica']}ACCESOS A REGISTRO</h6>
+                            <h6 class="mb-0 text-sm text-black"><span class="" style="font-size: 13px"></span>ACCESOS A REGISTRO</h6>
                         </div>
                     </div>
                 </td>

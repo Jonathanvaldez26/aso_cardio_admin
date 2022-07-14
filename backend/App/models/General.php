@@ -415,7 +415,6 @@ sql;
     $mysqli = Database::getInstance(true);
     $query =<<<sql
     SELECT ra.* FROM registros_acceso ra
-    WHERE id_registro_acceso < 11
     ORDER BY ra.nombre;
 sql;
 
