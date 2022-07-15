@@ -110,7 +110,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="text-center">
-                                                            <button onclick="focus_input()" class="btn bg-gradient-pink w-100 my-0 mb-5 ms-auto" type="submit" id="btn_registro_email">Verifica tu Código</button>
+                                                            <button onclick="focus_input()" class="btn bg-gradient-pink text-white w-100 my-0 mb-5 ms-auto" type="submit" id="btn_registro_email">Verifica tu Código</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -138,7 +138,7 @@
                                     <th>Información Personal</th>
                                     <th>Información de Trabajo</th>
                                     <th>Status<th>
-                                    <th>Acciones</th>
+                                    <!-- <th>Acciones</th> -->
                                 </tr>
                             </thead>
 
@@ -263,7 +263,7 @@
 
         var table = $('#lista-reg').DataTable({
             "drawCallback": function( settings ) {
-                $('.current').addClass("btn bg-gradient-musa btn-rounded").removeClass("paginate_button");
+                $('.current').addClass("btn bg-gradient-cardio text-white btn-rounded").removeClass("paginate_button");
                 $('.paginate_button').addClass("btn").removeClass("paginate_button");
                 $('.dataTables_length').addClass("m-4");
                 $('.dataTables_info').addClass("mx-4");

@@ -352,7 +352,18 @@ sql;
     public static function getRegistrosAsistenciasByCode($code){
         $mysqli = Database::getInstance();
         $query=<<<sql
-        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario, ras.id_registro_asistencia, ras.status,
+        SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ra.email, ras.id_registro_asistencia, ras.status,
+        ra.telefono, ra.email, ra.especialidad, lp.nombre AS nombre_especialidad,
+        CONCAT (ra.nombre,' ',ra.segundo_nombre,' ',ra.apellido_paterno,' ',ra.apellido_materno) AS nombre_completo
+        FROM registros_asistencia ras
+        INNER JOIN asistencias a ON a.id_asistencia = id_asistencias
+        INNER JOIN utilerias_asistentes ua
+        INNER JOIN registros_acceso ra ON ra.id_registro_acceso = ras.utilerias_asistentes_id
+        INNER JOIN linea_principal lp ON lp.id_linea_principal = ra.especialidad
+        WHERE a.clave = '$code' GROUP BY ras.utilerias_asistentes_id;
+sql;
+        return $mysqli->queryAll($query);
+        /*SELECT a.nombre AS nombre_asistencia, ras.utilerias_asistentes_id, ua.usuario, ras.id_registro_asistencia, ras.status,
         ra.telefono, ra.email, ra.especialidad, lp.nombre AS nombre_especialidad,
         CONCAT (ra.nombre,' ',ra.segundo_nombre,' ',apellido_paterno,' ',apellido_materno) AS nombre_completo
         FROM registros_asistencia ras
@@ -365,9 +376,7 @@ sql;
         and ra.id_registro_acceso = ua.id_registro_acceso
         and lp.id_linea_principal = ra.especialidad
         
-        WHERE a.clave = '$code'
-sql;
-        return $mysqli->queryAll($query);
+        WHERE a.clave = '$code'*/
     }
 
     public static function countLista($code){

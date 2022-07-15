@@ -108,29 +108,29 @@ html;
                 <td>
                     <b>Especialidad: </b>{$value['nombre_especialidad']}
                 </td>
-                
-html;
-            if ($value['status'] == 1) {
-                $tabla .= <<<html
                 <td class="text-center"><span class="badge badge-success">En Tiempo</span><td>
-                <td>
-                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
 html;
-            } else if ($value['status'] == 2) {
-                $tabla .= <<<html
-                <td class="text-center"><span class="badge badge-danger">Fuera del Horario</span><td>
-                <td>
-                    <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </td>
-            </tr>
-html;
-            }
+//             if ($value['status'] == 1) {
+//                 $tabla .= <<<html
+//                 <td class="text-center"><span class="badge badge-success">En Tiempo</span><td>
+//                 <td>
+//                     <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
+//                         <i class="fas fa-trash"></i>
+//                     </button>
+//                 </td>
+//             </tr>
+// html;
+//             } else if ($value['status'] == 2) {
+//                 $tabla .= <<<html
+//                 <td class="text-center"><span class="badge badge-danger">Fuera del Horario</span><td>
+//                 <td>
+//                     <button class="btn btn-danger " onclick="borrarRegister({$value['id_registro_asistencia']})" type="button" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Eliminar Registro de {$value['nombre_completo']}">
+//                         <i class="fas fa-trash"></i>
+//                     </button>
+//                 </td>
+//             </tr>
+// html;
+//             }
         }
 
         foreach ($codigo as $key => $value) {
