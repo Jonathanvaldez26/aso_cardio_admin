@@ -141,7 +141,7 @@ public static function getInfo($clave){
     $query=<<<sql
     SELECT ra.*, ra.id_registro_acceso as utilerias_asistentes_id, ra.ticket_virtual as clave_ticket
     FROM registros_acceso ra
-    WHERE ra.ticket_virtual = '$clave'
+    WHERE ra.clave = '$clave'
 sql;
 
     return $mysqli->queryAll($query);

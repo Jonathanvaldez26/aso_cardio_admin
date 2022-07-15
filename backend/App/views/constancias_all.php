@@ -1,6 +1,6 @@
 <?php echo $header;?>
 <title>
-    Constancias - AMH - GRUPO LAHE    
+    Constancias - ASO CARDIO - GRUPO LAHE    
 </title>
 <body class="g-sidenav-show  bg-gray-100">
     <?php echo $asideMenu;?>

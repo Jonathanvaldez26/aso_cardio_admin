@@ -105,7 +105,7 @@
                                                         <div class="row gx-2 gx-sm-3">
                                                             <div class="col">
                                                                 <div class="form-group">
-                                                                    <input style="font-size: 35px" type="text" id="codigo_registro" name="codigo_registro" class="form-control form-control-lg text-center" minlength="6" maxlength="6" autocomplete="off" autocapitalize="off" autofocus>
+                                                                    <input style="font-size: 35px" type="text" id="codigo_registro" name="codigo_registro" class="form-control form-control-lg text-center" minlength="10" maxlength="10" autocomplete="off" autocapitalize="off" autofocus>
                                                                 </div>
                                                             </div>
                                                         </div>
