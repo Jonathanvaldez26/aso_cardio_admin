@@ -594,9 +594,9 @@ html;
         //$num_linea =utf8_decode("Línea: 39");
         //$num_linea2 =utf8_decode("Línea: 39");
         if($id_producto == 1){
-        $pdf->SetXY(15, 65);
+        $pdf->SetXY(17, 65);
         
-        $pdf->SetFont('Arial', 'B', 22);
+        $pdf->SetFont('Arial', 'B', 26);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
@@ -745,9 +745,9 @@ html;
         //$num_linea2 =utf8_decode("Línea: 39");
         
         if($id_producto == 1){
-            $pdf->SetXY(15, 65);
+            $pdf->SetXY(17, 65);
             
-            $pdf->SetFont('Arial', 'B', 22);
+            $pdf->SetFont('Arial', 'B', 26);
             #4D9A9B
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
