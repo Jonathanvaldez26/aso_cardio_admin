@@ -564,13 +564,27 @@ html;
         // $nombre_completo = $datos_user['prefijo'] . " " . $nombre[0] . " " . $datos_user['apellidop']. " " . $datos_user['apellidom'];
         // $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
         // $nombre_completo = mb_strtoupper($nombre_completo);
+        if($datos_user['segundo_nombre'] == ''){
+            $nombre = html_entity_decode($datos_user['nombre']);
+            $apellido = html_entity_decode($datos_user['apellido_paterno']);
+            $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
+            $nombre_completo = ($nombre)." ".($apellido)." ".($segundo_apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
+        }else{
+            $nombre = html_entity_decode($datos_user['nombre']);
+            $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
+            $apellido = html_entity_decode($datos_user['apellido_paterno']);
+            $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
+        }
 
-        $nombre = html_entity_decode($datos_user['nombre']);
-        $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
-        $apellido = html_entity_decode($datos_user['apellido_paterno']);
-        $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
-        $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
-        $nombre_completo = mb_strtoupper($nombre_completo);
+
+        // $nombre = html_entity_decode($datos_user['nombre']);
+        // $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
+        // $apellido = html_entity_decode($datos_user['apellido_paterno']);
+        // $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
+        // $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
+        // $nombre_completo = mb_strtoupper($nombre_completo);
 
         // echo $nombre_completo;
         // exit;
@@ -596,7 +610,7 @@ html;
         if($id_producto == 1){
         $pdf->SetXY(17, 65);
         
-        $pdf->SetFont('Arial', 'B', 26);
+        $pdf->SetFont('Arial', 'B', 36);
         #4D9A9B
         $pdf->SetTextColor(0, 0, 0);
         $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
@@ -716,12 +730,26 @@ html;
         // $nombre_completo = $datos_user['nombre']." ".$datos_user['segundo_nombre']." ".$datos_user['apellido_paterno']." ".$datos_user['apellido_materno'];
         // $nombre_completo = mb_strtoupper($nombre_completo);
 
-        $nombre = html_entity_decode($datos_user['nombre']);
-        $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
-        $apellido = html_entity_decode($datos_user['apellido_paterno']);
-        $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
-        $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
-        $nombre_completo = mb_strtoupper($nombre_completo);
+        if($datos_user['segundo_nombre'] == ''){
+            $nombre = html_entity_decode($datos_user['nombre']);
+            $apellido = html_entity_decode($datos_user['apellido_paterno']);
+            $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
+            $nombre_completo = ($nombre)." ".($apellido)." ".($segundo_apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
+        }else{
+            $nombre = html_entity_decode($datos_user['nombre']);
+            $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
+            $apellido = html_entity_decode($datos_user['apellido_paterno']);
+            $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido);
+            $nombre_completo = mb_strtoupper($nombre_completo);
+        }
+
+        // $nombre = html_entity_decode($datos_user['nombre']);
+        // $segundo_nombre = html_entity_decode($datos_user['segundo_nombre']);
+        // $apellido = html_entity_decode($datos_user['apellido_paterno']);
+        // $segundo_apellido = html_entity_decode($datos_user['apellido_materno']);
+        // $nombre_completo = ($nombre)." ".($segundo_nombre)." ".($apellido)." ".($segundo_apellido);
+        // $nombre_completo = mb_strtoupper($nombre_completo);
 
         // echo $nombre_completo;
         // exit;
@@ -747,7 +775,7 @@ html;
         if($id_producto == 1){
             $pdf->SetXY(17, 65);
             
-            $pdf->SetFont('Arial', 'B', 26);
+            $pdf->SetFont('Arial', 'B', 36);
             #4D9A9B
             $pdf->SetTextColor(0, 0, 0);
             $pdf->Multicell(273, 50, utf8_decode($nombre_completo), 0, 'C');
